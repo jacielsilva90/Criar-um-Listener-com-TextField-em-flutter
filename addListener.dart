@@ -22,7 +22,10 @@ class MyHomePage extends MyTextFieldListener {
   const MyHomePage({super.key, required this.title});
   final String title;
 }
-
+//Em flutter, para alterar o estado de tela do app devemos usar setState.
+//A funçao setState é exclusiva da classe Statefulwidget. 
+//Logo a tela deve ser criada em uma classe extendida de Statefulwidget.
+//criamos uma classe estendida de statefulwidget e nela criamos um estado.
 class MyTextFieldListener extends StatefulWidget {
   const MyTextFieldListener({super.key});
   @override
@@ -30,9 +33,19 @@ class MyTextFieldListener extends StatefulWidget {
 }
 
 class MyTextFieldListenerState extends State<MyTextFieldListener> {
+  //definimos um controlador que captura os dados do textfield.
+  // o controller deve ser colocado no textfield.
   final TextEditingController _controller = TextEditingController();//controller
-  String _currentText = "";
+  String _currentText = ""; //essa string vai ser colocada na tela para exibir a mensagem.
 
+  //Função que atualiza a tela ao digitar.
+  void _onTextChanged() {
+    setState(() {
+      _currentText = _controller.text;
+      //print("Texto atual: ${_controller.text}");//exibe no terminal
+    });
+  }
+  
   @override
   void initState() {
     super.initState();
@@ -40,17 +53,10 @@ class MyTextFieldListenerState extends State<MyTextFieldListener> {
   }
 
   @override
-  void dispose() {//Descartar o controller no widget removido
+  void dispose() {//Descartar o controller no widget removido após fechar o app
     _controller.removeListener(_onTextChanged);
     _controller.dispose();
     super.dispose();
-  }
-
-  void _onTextChanged() {//função para cada mudança
-    setState(() {
-      _currentText = _controller.text;
-      //print("Texto atual: ${_controller.text}");//exibe no terminal
-    });
   }
 
   @override
@@ -64,10 +70,12 @@ class MyTextFieldListenerState extends State<MyTextFieldListener> {
             Text('ADDLISTENER'),
             Text(''),
             TextField(
+              //input para dados digitados deve conter o controller.
               controller: _controller, // 5. Conectar o controller
               decoration: InputDecoration(labelText: 'Digite'),
             ),
             SizedBox(height: 20),
+            //exibe o texto digitado.
             Text("Você digitou: $_currentText"),
             Text(''),
           ],
@@ -76,14 +84,6 @@ class MyTextFieldListenerState extends State<MyTextFieldListener> {
     );
   }
 }
-
-
-
-
-
-
-
-
 
 
 
