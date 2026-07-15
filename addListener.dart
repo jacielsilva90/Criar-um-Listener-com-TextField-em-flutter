@@ -47,9 +47,9 @@ class MyTextFieldListenerState extends State<MyTextFieldListener> {
   }
   
   @override
-  void initState() {
+  void initState() { //essa função altera a tela instantaneamente ao digitar
     super.initState();
-    _controller.addListener(_onTextChanged);//listener
+    _controller.addListener(_onTextChanged);//listener captura o controller e chama a função.
   }
 
   @override
