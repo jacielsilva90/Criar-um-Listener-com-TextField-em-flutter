@@ -16,7 +16,9 @@ class MyHomePage extends StatefulWidget { //StatefulWidget é classe pai
   State<MyHomePage> createState() => _MyHomePageState(); //cria a classe _myhomepagestate()
 }
 
-//o controller deve ser colocado no Textfield para captura de dados.
+O input de  dados no flutter/dart é feita através do TextField ou TextFormField. 
+A captura de dados é feita pelo controller colocado no TextField.
+O controller deve ser colocado no Textfield para captura de dados.
   final TextEditingController _controller = TextEditingController();
 
 Para mudar o estado de tela, 
